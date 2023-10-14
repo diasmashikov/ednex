@@ -3,18 +3,28 @@ import 'package:flutter/material.dart';
 typedef void ValueChangedCallback(String selectedValue);
 
 class CustomDropdown extends StatefulWidget {
+  final String initialValue;
+  final List<String> options;
   final ValueChangedCallback onChanged;
 
-  CustomDropdown({required this.onChanged});
+  CustomDropdown(
+      {required this.initialValue,
+      required this.options,
+      required this.onChanged});
 
   @override
   _CustomDropdownState createState() => _CustomDropdownState();
 }
 
 class _CustomDropdownState extends State<CustomDropdown> {
-  List<String> options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
   String selectedOption = 'Select an option';
   bool isDropdownOpen = false;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedOption = widget.initialValue;
+  }
 
   void _handleOptionSelected(String option) {
     setState(() {
@@ -56,7 +66,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
               borderRadius: BorderRadius.circular(4),
             ),
             child: Column(
-              children: options
+              children: widget.options
                   .map((option) => GestureDetector(
                         onTap: () {
                           _handleOptionSelected(option);
