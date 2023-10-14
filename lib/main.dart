@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Ednex',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: getMaterialColor(const Color.fromRGBO(54, 69, 79, 1)),
         ),
