@@ -2,9 +2,7 @@ import 'package:ednex/data/Language.dart';
 import 'package:ednex/widgets/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
-import 'widgets/reusable_form_field.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import 'widgets/reusable_form_field.dart';
 
@@ -19,6 +17,30 @@ class _MainScreenState extends State<MainScreen> {
   String _textWantToLearn = "";
 
   String _textAlreadyKnows = "";
+
+  late YoutubePlayerController _youtubeController;
+
+  bool _youtubeVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _youtubeController = YoutubePlayerController.fromVideoId(
+        videoId: 'wS9LfFtXdBs',
+        autoPlay: false,
+        params: const YoutubePlayerParams(showFullscreenButton: true),
+        startSeconds: 17.0,
+        endSeconds: 32.0);
+  }
+
+  void _handleButtonPress() {
+    setState(() {
+      if (_textAlreadyKnows != "" && _textWantToLearn != "") {
+        _youtubeVisible = true;
+      }
+    });
+  }
 
   void _handleTextWantToLearnChange(String text) {
     setState(() {
@@ -58,7 +80,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                // Add your onPressed logic here
+                _handleButtonPress();
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(
@@ -74,10 +96,24 @@ class _MainScreenState extends State<MainScreen> {
                   fontSize: 18, // Text font size
                 ),
               ),
-            )
+            ),
+            const Padding(padding: EdgeInsets.only(top: 20)),
+            Visibility(
+              visible: _youtubeVisible,
+              child: YoutubePlayer(
+                controller: _youtubeController,
+                aspectRatio: 16 / 9,
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _youtubeController.close();
   }
 }
