@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
+import 'widgets/reusable_form_field.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -12,72 +14,56 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  String programmingLanguage = 'Select a programming language';
-  String application = 'Select application';
-  String backendLibrary = 'Select backend library';
-  String backendLibraryTopic = 'Select topic';
-  String helpfulLink = "";
 
+  String _textWantToLearn = "";
 
-  void handleDropdownProgrammingChange(String value) {
-    setState(() {
-      programmingLanguage = value;
-    });
-  }
+  String _textAlreadyKnows = "";
 
-  void handleDropdownApplicationChange(String value) {
-    setState(() {
-      application = value;
-    });
-  }
-
-  void handleDropdownBackendLibraryChange(String value) {
-    setState(() {
-      backendLibrary = value;
-    });
-  }
-
-  void handleDropdownBackendLibraryTopicChange(String value) {
-    setState(() {
-      backendLibraryTopic = value;
-      switch(value) {
-        case "POST method":
-          helpfulLink = "https://www.youtube.com/watch?v=wS9LfFtXdBs";
-          break;
-        case "GET method":
-          helpfulLink = "https://www.youtube.com/watch?v=Vg752wm_EWU";
-          break;
-        case "TCP Connection":
-          helpfulLink = "https://www.youtube.com/watch?v=gV-EpY2TeQ0";
-          break;
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      appBar: AppBar(
+        title: const Text('Ednex'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CustomDropdown(
-                initialValue: programmingLanguage,
-                options: Repository().languages,
-                onChanged: handleDropdownProgrammingChange),
-            CustomDropdown(
-                initialValue: application,
-                options: Repository().pythonApplication,
-                onChanged: handleDropdownApplicationChange),
-            CustomDropdown(
-                initialValue: backendLibrary,
-                options: Repository().pythonApplicationBackendLibrary,
-                onChanged: handleDropdownBackendLibraryChange),
-            CustomDropdown(
-                initialValue: backendLibraryTopic,
-                options: Repository().pythonApplicationBackendLibraryTopic,
-                onChanged: handleDropdownBackendLibraryTopicChange),
-            Text(helpfulLink)
+            ReusableTextFormField(
+                labelText: 'Enter what you would like to know',
+                onChanged: _handleTextWantToLearnChange,
+                backgroundColor: Colors.grey[200]),
+            const SizedBox(
+              height: 20,
+            ),
+            ReusableTextFormField(
+                labelText: 'Enter what you already know',
+                onChanged: _handleTextAlreadyKnowsChange,
+                backgroundColor: Colors.grey[200]),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Add your onPressed logic here
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 20, vertical: 16), // Button padding
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(10.0), // Button border radius
+                ),
+              ),
+              child: Text(
+                'Aggregate',
+                style: TextStyle(
+                  fontSize: 18, // Text font size
+                ),
+              ),
+            )
+
           ],
         ),
       ),
