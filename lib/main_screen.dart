@@ -66,9 +66,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Ednex'),
-      ),
+      appBar: AppBar(title: const Text('Ednex')),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -101,7 +99,7 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ),
                 child: const Text(
-                  'Aggregate',
+                  'Process',
                   style: TextStyle(
                     fontSize: 18, // Text font size
                   ),
