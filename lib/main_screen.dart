@@ -6,6 +6,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 
 import 'widgets/reusable_form_field.dart';
 
+import 'widgets/reusable_form_field.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -14,11 +16,21 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   String _textWantToLearn = "";
 
   String _textAlreadyKnows = "";
 
+  void _handleTextWantToLearnChange(String text) {
+    setState(() {
+      _textWantToLearn = text;
+    });
+  }
+
+  void _handleTextAlreadyKnowsChange(String text) {
+    setState(() {
+      _textAlreadyKnows = text;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +75,6 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
             )
-
           ],
         ),
       ),
