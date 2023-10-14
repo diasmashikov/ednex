@@ -13,7 +13,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   String programmingLanguage = 'Select a programming language';
 
-  void handleDropdownValueChange(String value) {
+  void handleDropdownProgrammingChange(String value) {
     setState(() {
       programmingLanguage = value;
     });
@@ -27,14 +27,9 @@ class _MainScreenState extends State<MainScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             CustomDropdown(
-              onChanged: handleDropdownValueChange,
-            ),
-            Text(
-              'Selected Value: $programmingLanguage',
-              style: const TextStyle(
-                fontSize: 20,
-              ),
-            ),
+                initialValue: programmingLanguage,
+                options: ['Java', 'Python', 'JavaScript', 'C#'],
+                onChanged: handleDropdownProgrammingChange),
           ],
         ),
       ),
