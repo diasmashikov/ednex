@@ -29,18 +29,18 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
 
     _youtubeCNNPyTorchController = YoutubePlayerController.fromVideoId(
-        videoId: 'wS9LfFtXdBs',
+        videoId: 'pDdP0TFzsoQ',
         autoPlay: false,
         params: const YoutubePlayerParams(showFullscreenButton: true),
-        startSeconds: 17.0,
-        endSeconds: 32.0);
+        startSeconds: 241.0,
+        endSeconds: 438.0);
 
     _youtubeCNNPyTorchGCPController = YoutubePlayerController.fromVideoId(
-        videoId: 'wS9LfFtXdBs',
+        videoId: 'D9n_GPfcFhc',
         autoPlay: false,
         params: const YoutubePlayerParams(showFullscreenButton: true),
-        startSeconds: 17.0,
-        endSeconds: 32.0);
+        startSeconds: 758.0,
+        endSeconds: 3630.0);
   }
 
   void _handleButtonPress() {
@@ -123,9 +123,9 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                     YoutubeVideoCard(
                       youtubeController: _youtubeCNNPyTorchGCPController,
-                      title: 'Part 2: Training PyTorch CNN using GCP',
+                      title: 'Part 2: Training PyTorch CNN using AWS',
                       description:
-                          'Lesson provides a fundamental introduction to building Convolutional Neural Networks (CNNs) using PyTorch. Topics covered include understanding CNN components, setting up PyTorch, creating a basic CNN architecture, data preparation, model training, and performance evaluation.', // Full description here
+                          'Lesson describes full process to implementing PyTorch on AWS SageMaker to train ML models such as CNNs. Topics covered include setting up SageMaker environment, preparing the dataset, configuring the model, and training models through AWS.', // Full description here
                     ),
                   ],
                 ),
