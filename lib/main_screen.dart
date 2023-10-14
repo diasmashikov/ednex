@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
+import 'widgets/reusable_form_field.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -11,25 +13,65 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  String programmingLanguage = 'Select a programming language';
+  String _textWantToLearn = "";
 
-  void handleDropdownProgrammingChange(String value) {
+  String _textAlreadyKnows = "";
+
+  void _handleTextWantToLearnChange(String text) {
     setState(() {
-      programmingLanguage = value;
+      _textWantToLearn = text;
+    });
+  }
+
+  void _handleTextAlreadyKnowsChange(String text) {
+    setState(() {
+      _textAlreadyKnows = text;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      appBar: AppBar(
+        title: const Text('Ednex'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CustomDropdown(
-                initialValue: programmingLanguage,
-                options: ['Java', 'Python', 'JavaScript', 'C#'],
-                onChanged: handleDropdownProgrammingChange),
+            ReusableTextFormField(
+                labelText: 'Enter what you would like to know',
+                onChanged: _handleTextWantToLearnChange,
+                backgroundColor: Colors.grey[200]),
+            const SizedBox(
+              height: 20,
+            ),
+            ReusableTextFormField(
+                labelText: 'Enter what you already know',
+                onChanged: _handleTextAlreadyKnowsChange,
+                backgroundColor: Colors.grey[200]),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Add your onPressed logic here
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 20, vertical: 16), // Button padding
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(10.0), // Button border radius
+                ),
+              ),
+              child: Text(
+                'Aggregate',
+                style: TextStyle(
+                  fontSize: 18, // Text font size
+                ),
+              ),
+            )
           ],
         ),
       ),
