@@ -1,3 +1,4 @@
+import 'package:ednex/data/Language.dart';
 import 'package:ednex/widgets/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -13,21 +14,11 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+
   String _textWantToLearn = "";
 
   String _textAlreadyKnows = "";
 
-  void _handleTextWantToLearnChange(String text) {
-    setState(() {
-      _textWantToLearn = text;
-    });
-  }
-
-  void _handleTextAlreadyKnowsChange(String text) {
-    setState(() {
-      _textAlreadyKnows = text;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +63,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
             )
+
           ],
         ),
       ),
